@@ -1,0 +1,23 @@
+# Debug / runtime
+install_debug.log
+*.log
+
+# OS junk
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Editor
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Temp files from launcher
+acestep_ui_*.html
