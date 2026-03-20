@@ -1089,86 +1089,6 @@ input[type=range]::-webkit-slider-thumb {
   .setting-row { grid-template-columns: 1fr; }
   .setting-row-3 { grid-template-columns: 1fr 1fr; }
 }
-
-/* ═══ V8: AUTO-PLAY TOGGLE ═══ */
-.autoplay-row {
-  display: flex; align-items: center; gap: 8px;
-  padding: 8px 0 4px;
-}
-.autoplay-row span { font-size: 0.75rem; color: var(--text2); }
-
-/* ═══ V8: FOLDABLE TAG CATEGORIES ═══ */
-.tag-cat-header { cursor: pointer; user-select: none; }
-.tag-cat-arrow {
-  display: inline-block; transition: transform 0.2s;
-  font-size: 10px; color: var(--text3); margin-right: 2px;
-}
-.tag-cat-header.collapsed .tag-cat-arrow { transform: rotate(-90deg); }
-.tag-cloud.collapsed { display: none; }
-
-/* ═══ V8: LIBRARY LISTENED GRAY-OUT ═══ */
-.lib-item.listened { opacity: 0.5; }
-.lib-item.listened:hover { opacity: 0.8; }
-
-/* ═══ V8: DICE / RANDOMIZE BUTTONS ═══ */
-.dice-btn {
-  width: 28px; height: 28px; border-radius: var(--radius-sm);
-  background: transparent; border: 1px solid var(--input-border);
-  color: var(--text3); font-size: 14px; cursor: pointer;
-  display: inline-grid; place-items: center;
-  transition: all 0.15s; text-shadow: none;
-  vertical-align: middle; margin-left: 4px; flex-shrink: 0;
-}
-.dice-btn:hover { border-color: var(--accent-dim); color: var(--accent); }
-
-/* ═══ V8: SETTINGS TABS ═══ */
-.settings-tab-bar {
-  display: flex; gap: 2px; margin-bottom: 10px;
-  padding: 2px; background: var(--surface);
-  border-radius: var(--radius-sm); border: 1px solid var(--panel-border);
-}
-.settings-tab-pill {
-  flex: 1; padding: 5px 8px; background: transparent; border: none;
-  border-radius: calc(var(--radius-sm) - 1px);
-  color: var(--text3); font-family: 'Chakra Petch', sans-serif;
-  font-size: 0.68rem; font-weight: 500; cursor: pointer;
-  transition: all 0.2s; text-shadow: var(--shadow-text);
-}
-.settings-tab-pill:hover { color: var(--text2); }
-.settings-tab-pill.active {
-  color: var(--accent); background: rgba(0, 231, 255, 0.08);
-}
-.settings-tab-content { display: none; }
-.settings-tab-content.active { display: block; }
-
-/* ═══ V8: COPY/REAPPLY BUTTONS IN LIBRARY ═══ */
-.lib-action-row {
-  display: flex; gap: 6px; margin-top: 6px;
-}
-.lib-action-btn {
-  padding: 4px 10px; border-radius: var(--radius-sm);
-  font-size: 0.68rem; font-family: inherit;
-  background: rgba(0,231,255,0.06); border: 1px solid var(--panel-border);
-  color: var(--text2); cursor: pointer; transition: all 0.15s;
-  text-shadow: none;
-}
-.lib-action-btn:hover { border-color: var(--accent-dim); color: var(--accent); }
-
-/* ═══ V8: BYOB RESTORE BUTTON ═══ */
-.byob-restore-btn {
-  padding: 6px 12px; font-size: 0.72rem; font-family: inherit;
-  background: transparent; border: 1px solid var(--input-border);
-  color: var(--text3); border-radius: var(--radius-sm);
-  cursor: pointer; transition: all 0.15s; text-shadow: none;
-}
-.byob-restore-btn:hover { border-color: var(--accent-dim); color: var(--accent); }
-
-/* ═══ V8: AUDIO PLAYHEAD COLOR ═══ */
-audio::-webkit-media-controls-current-time-display,
-audio::-webkit-media-controls-time-remaining-display {
-  color: var(--accent);
-}
-
 </style>
 </head>
 <body>
@@ -1322,8 +1242,8 @@ audio::-webkit-media-controls-time-remaining-display {
         <input type="range" id="nodeCount" min="10" max="120" value="50" oninput="updateNodeCount(this.value)">
       </div>
       <div class="slider-group">
-        <label>Brightness <span id="nodeBrightVal">85%</span></label>
-        <input type="range" id="nodeBright" min="10" max="100" value="85" oninput="updateNodeBright(this.value)">
+        <label>Brightness <span id="nodeBrightVal">55%</span></label>
+        <input type="range" id="nodeBright" min="10" max="100" value="55" oninput="updateNodeBright(this.value)">
       </div>
       <div class="slider-group">
         <label>Connection Range <span id="connDistVal">180px</span></label>
@@ -1381,17 +1301,17 @@ audio::-webkit-media-controls-time-remaining-display {
   <div class="panel-body">
     <div class="setting-row">
       <div class="setting-group">
-        <div class="setting-label">Duration (sec) <button class="dice-btn" onclick="$('duration').value='';saveAllSettings()" title="Clear for auto">&#x1F3B2;</button></div>
+        <div class="setting-label">Duration (sec)</div>
         <input type="number" id="duration" value="60" min="10" max="600" step="5" data-persist>
       </div>
       <div class="setting-group">
-        <div class="setting-label">BPM <button class="dice-btn" onclick="$('bpm').value='';saveAllSettings()" title="Clear for auto">&#x1F3B2;</button></div>
+        <div class="setting-label">BPM</div>
         <input type="number" id="bpm" value="" min="40" max="240" placeholder="auto" data-persist>
       </div>
     </div>
     <div class="setting-row">
       <div class="setting-group">
-        <div class="setting-label">Seed <button class="dice-btn" onclick="$('seed').value='-1';saveAllSettings()" title="Set random (-1)">&#x1F3B2;</button></div>
+        <div class="setting-label">Seed</div>
         <input type="number" id="seed" value="-1" min="-1" data-persist>
       </div>
       <div class="setting-group">
@@ -1410,10 +1330,6 @@ audio::-webkit-media-controls-time-remaining-display {
       </div>
     </div>
     <div class="setting-row">
-      <div class="setting-group">
-        <div class="setting-label">LM CFG Scale</div>
-        <input type="number" id="cfgScale" value="2.5" min="0" max="15" step="0.1" data-persist>
-      </div>
       <div class="setting-group">
         <div class="setting-label">Audio Format</div>
         <select id="audioFormat" data-persist>
@@ -1462,17 +1378,6 @@ audio::-webkit-media-controls-time-remaining-display {
       <label><input type="checkbox" id="useFormat" data-persist> Format via LLM</label>
       <label><input type="checkbox" id="cotCaption" checked data-persist> CoT Caption</label>
       <label><input type="checkbox" id="cotLanguage" checked data-persist> CoT Language</label>
-    </div>
-    <div class="setting-label" style="margin-top:10px">LM Settings</div>
-    <div class="setting-row">
-      <div class="setting-group">
-        <div class="setting-label">Temperature</div>
-        <input type="number" id="lmTemp" value="0.85" min="0" max="2" step="0.05" data-persist>
-      </div>
-      <div class="setting-group">
-        <div class="setting-label">Top-P</div>
-        <input type="number" id="lmTopP" value="0.9" min="0" max="1" step="0.01" data-persist>
-      </div>
     </div>
     <button class="fmt-btn" style="width:100%;margin-top:6px" onclick="loadRandom()">🎲 Load Random Example</button>
   </div>
@@ -1600,8 +1505,7 @@ audio::-webkit-media-controls-time-remaining-display {
       <button class="byob-copy-btn" id="byobCopyBtn" onclick="byobCopy()">📋 Copy AI Prompt</button>
     </div>
     <textarea class="byob-paste" id="byobPaste" placeholder='Paste the JSON from your AI here...&#10;&#10;Example:&#10;{&#10;  "prompt": "dark ambient synthwave...",&#10;  "lyrics": "[Verse 1]\\n...",&#10;  "bpm": 120&#10;}'></textarea>
-    <div style="display:flex;gap:8px;margin-top:8px;justify-content:flex-end;align-items:center">
-      <button class="byob-restore-btn" id="byobRestoreBtn" onclick="byobRestore()" style="display:none">Restore Last</button>
+    <div style="display:flex;gap:8px;margin-top:8px;justify-content:flex-end">
       <button class="fmt-btn" onclick="toggleByob()" style="font-size:.75rem">Close</button>
       <button class="byob-apply" id="byobApplyBtn" onclick="byobApply()">Apply Config</button>
     </div>
@@ -1634,12 +1538,7 @@ let timerInterval = null;
 let rainSpeed = 50;
 let rainEnabled = true;
 let bgType = 'constellation';
-let autoPlayEnabled = false;
-let sessionGenCount = 0;
-let lastByobConfig = '';
-let listenedTracks = new Set();
-let collapsedCats = new Set();
-let nodeBrightness = 0.85;
+let nodeBrightness = 0.55;
 let nodeCountTarget = 50;
 let connectionDist  = 180;
 
@@ -2175,7 +2074,7 @@ function hideCtxMenu() { $('ctxMenu').classList.remove('show'); }
 document.addEventListener('click', hideCtxMenu);
 document.addEventListener('contextmenu', e => {
   // Only intercept on specific elements, let default elsewhere
-  if (!e.target.closest('.lib-item') && !e.target.closest('.audio-card') && !e.target.closest('.tag')) return;
+  if (!e.target.closest('.lib-item') && !e.target.closest('.audio-card')) return;
   e.preventDefault();
 });
 
@@ -2505,14 +2404,7 @@ function byobApply() {
     cleaned = cleaned.replace(/^```(?:json)?\s*\n?/i, '').replace(/\n?\s*```\s*$/i, '');
     config = JSON.parse(cleaned);
   } catch (e) {
-    // V8: Track attempts for progressive humor
-    if (!window._byobAttempts) window._byobAttempts = 0;
-    window._byobAttempts++;
-    if (window._byobAttempts >= 3) {
-      showToast('Bro. Your AI is broken. Go slap it or get a different one.', 'error');
-    } else {
-      showToast('❌ Invalid JSON — make sure you copied the full code block', 'error');
-    }
+    showToast('❌ Invalid JSON — make sure you copied the full code block', 'error');
     return;
   }
 
@@ -2549,11 +2441,6 @@ function byobApply() {
 
   saveAllSettings();
   showToast('✅ Applied ' + applied + ' settings from your AI!', 'ok');
-
-  // V8: Save last config for restore + clear textarea
-  lastByobConfig = raw;
-  $('byobPaste').value = '';
-  $('byobRestoreBtn').style.display = '';
 
   // Close BYOB section
   setTimeout(() => {
@@ -2853,7 +2740,6 @@ function generate() {
   const sv = parseInt($('seed').value), bv = parseInt($('bpm').value);
 
   // Shared params across all modes
-  const cfgVal = parseFloat($('cfgScale') ? $('cfgScale').value : 2.0);
   const shared = {
     thinking: $('thinking').checked, use_format: $('useFormat').checked,
     use_cot_caption: $('cotCaption').checked, use_cot_language: $('cotLanguage').checked,
@@ -2861,17 +2747,11 @@ function generate() {
     bpm: bv > 0 ? bv : undefined,
     inference_steps: parseInt($('inferSteps').value) || 8,
     guidance_scale: parseFloat($('guidanceScale').value) || 7.0,
-    lm_cfg_scale: cfgVal,
     seed: sv >= 0 ? sv : -1, use_random_seed: sv < 0,
     batch_size: parseInt($('batchSize').value) || 1,
     audio_format: $('audioFormat').value,
     vocal_language: $('vocalLang').value,
     key_scale: $('keyScale').value || '', time_signature: $('timeSig').value || '',
-    // V8: LM params
-    lm_temperature: parseFloat($('lmTemp') ? $('lmTemp').value : 0.85),
-    lm_top_p: parseFloat($('lmTopP') ? $('lmTopP').value : 0.9),
-    lm_top_k: parseInt($('lmTopK') ? $('lmTopK').value : 0),
-    lm_repetition_penalty: 1.0,
   };
 
   let body, audioFile = null;
@@ -3031,19 +2911,10 @@ function setGenState(state) {
       genStartTime = Date.now(); timerInterval = setInterval(updateTimer, 1000); updateTimer();
       break;
     case 'done':
-      sessionGenCount++;
-      const trash = getTrashTalk();
-      btn.textContent = trash || '✓ Done — Generate Again';
-      if (trash) setTimeout(() => { if (genState === 'done') btn.textContent = '✓ Done — Generate Again'; }, 5000);
-      timer.className = '';
+      btn.textContent = '✓ Done — Generate Again'; timer.className = '';
       setProgress(100, 1);
       setTimeout(() => setProgress(0, 0), 1500);
-      // V8 FIX: Slide out to show result but do NOT hard-pin (prevents DOM/playhead glitch)
-      if (!btnPins.has('br') && !panelPins.has('br')) {
-        panelPins.add('br');
-        setTarget('br', 1);
-        updateSidePush();
-      }
+      if (!btnPins.has('br') && !panelPins.has('br')) togglePanel('br');
       break;
     case 'error':
       btn.textContent = 'Generate Music'; timer.className = '';
@@ -3098,7 +2969,7 @@ function displayResults(item, genParams) {
     card.className = 'audio-card';
     card.innerHTML =
       '<div class="audio-card-head"><div class="audio-card-title">Track ' + (i + 1) + '</div><div class="audio-card-meta">' + esc(parts.join(' · ')) + '</div></div>' +
-      '<audio controls preload="metadata" src="' + esc(url) + '" onerror="this.style.opacity=0.3;this.title=\'Audio unavailable - check API connection\'"></audio>' +
+      '<audio controls preload="auto" src="' + esc(url) + '"></audio>' +
       '<button class="dl-btn" data-url="' + esc(url) + '" data-idx="' + (i + 1) + '" onclick="dlTrack(this)">↓ Download</button>';
     container.appendChild(card);
 
@@ -3274,14 +3145,9 @@ function renderLibrary() {
         '</div>' +
       '</div>';
 
-    // V8: Apply listened gray-out
-    if (entries.some(e => listenedTracks.has(e.id))) item.classList.add('listened');
-
-    // Star click - V8: stopPropagation + stopImmediatePropagation to prevent fold
+    // Star click
     item.querySelector('.lib-star').onclick = (e) => {
       e.stopPropagation();
-      e.stopImmediatePropagation();
-      e.preventDefault();
       const lib2 = getLibrary();
       indices.forEach(i => { if (lib2[i]) lib2[i].fav = !lib2[i].fav; });
       updateLibrary(lib2);
@@ -3337,45 +3203,11 @@ function renderLibrary() {
     let expanded = false;
     item.onclick = (e) => {
       if (e.target.closest('.lib-star')) return;
-      if (expanded) { item.querySelectorAll('audio, .dl-btn, .lib-detail, .lib-action-row').forEach(el => el.remove()); expanded = false; return; }
-      // V8: Show params detail
-      const p = entries[0].params || {};
-      let detailHtml = '<div class="lib-detail">';
-      [['Prompt', p.prompt], ['Tags', p.tags], ['Duration', (p.audio_duration||'')+'s'], ['BPM', p.bpm||'auto'],
-       ['Seed', p.seed], ['Steps', p.inference_steps], ['CFG', p.cfg_scale], ['Guidance', p.guidance_scale],
-       ['Format', p.audio_format], ['Language', p.vocal_language], ['Key', p.key_scale], ['Gen Time', (entries[0].genTime||'?')+'s']
-      ].forEach(([k,v]) => { if (v !== undefined && v !== '' && v !== null) detailHtml += '<div class="lib-detail-row"><span class="lib-detail-key">'+k+'</span><span class="lib-detail-val">'+esc(String(v)).slice(0,80)+'</span></div>'; });
-      detailHtml += '</div>';
-      item.insertAdjacentHTML('beforeend', detailHtml);
-      // V8: Action buttons - Copy Prompt + Reapply Settings
-      const actionRow = document.createElement('div');
-      actionRow.className = 'lib-action-row';
-      const copyBtn = document.createElement('button');
-      copyBtn.className = 'lib-action-btn'; copyBtn.textContent = 'Copy Prompt';
-      copyBtn.onclick = (ev) => { ev.stopPropagation(); navigator.clipboard.writeText(p.prompt||'').then(() => showToast('Prompt copied')); };
-      actionRow.appendChild(copyBtn);
-      const reapplyBtn = document.createElement('button');
-      reapplyBtn.className = 'lib-action-btn'; reapplyBtn.textContent = 'Reapply Settings';
-      reapplyBtn.onclick = (ev) => {
-        ev.stopPropagation();
-        if (p.prompt) $('promptArea').value = p.prompt;
-        if (p.lyrics) $('lyricsArea').value = p.lyrics;
-        if (p.bpm) $('bpm').value = p.bpm;
-        if (p.audio_duration) $('duration').value = p.audio_duration;
-        if (p.seed != null) $('seed').value = p.seed;
-        if (p.inference_steps) $('inferSteps').value = p.inference_steps;
-        if (p.guidance_scale) $('guidanceScale').value = p.guidance_scale;
-        saveAllSettings();
-        showToast('Settings reapplied from library');
-      };
-      actionRow.appendChild(reapplyBtn);
-      item.appendChild(actionRow);
-      // Audio players with listened tracking
+      if (expanded) { item.querySelectorAll('audio, .dl-btn').forEach(el => el.remove()); expanded = false; return; }
       entries.forEach(en => {
         const audio = document.createElement('audio');
         audio.controls = true; audio.preload = 'none'; audio.src = en.url;
         audio.style.cssText = 'width:100%;height:32px;margin-top:6px';
-        audio.onplay = () => { markListened(en.id); item.classList.add('listened'); };
         item.appendChild(audio);
         const dlBtn = document.createElement('button');
         dlBtn.className = 'dl-btn'; dlBtn.textContent = '↓ Track ' + en.trackNum;
@@ -3712,153 +3544,16 @@ function setStatus(msg, type) {
 }
 
 
-
-/* ═══════════════════════════════════════════════════════════════
-   V8: AUTO-PLAY TOGGLE
-   ═══════════════════════════════════════════════════════════════ */
-function toggleAutoPlay() {
-  autoPlayEnabled = !autoPlayEnabled;
-  $('autoPlayToggle').classList.toggle('on', autoPlayEnabled);
-  localStorage.setItem(LS('autoPlay'), autoPlayEnabled);
-}
-function loadAutoPlay() {
-  autoPlayEnabled = localStorage.getItem(LS('autoPlay')) === 'true';
-  $('autoPlayToggle').classList.toggle('on', autoPlayEnabled);
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   V8: SETTINGS TABS
-   ═══════════════════════════════════════════════════════════════ */
-function switchSettingsTab(tab) {
-  document.querySelectorAll('.settings-tab-pill').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.settings-tab-content').forEach(c => c.classList.remove('active'));
-  document.querySelector('.settings-tab-pill[onclick*="' + tab + '"]').classList.add('active');
-  $('settingsTab-' + tab).classList.add('active');
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   V8: SCROLL WHEEL ON NUMBER INPUTS + SHIFT MODIFIER
-   ═══════════════════════════════════════════════════════════════ */
-document.addEventListener('wheel', (e) => {
-  const el = e.target;
-  if (el.tagName !== 'INPUT' || el.type !== 'number') return;
-  e.preventDefault();
-  const step = parseFloat(el.step) || 1;
-  const mult = e.shiftKey ? 10 : 1;
-  const delta = (e.deltaY < 0 ? 1 : -1) * step * mult;
-  const current = parseFloat(el.value) || 0;
-  let newVal = current + delta;
-  if (el.min !== '') newVal = Math.max(parseFloat(el.min), newVal);
-  if (el.max !== '') newVal = Math.min(parseFloat(el.max), newVal);
-  // Round to step precision
-  const decimals = (String(step).split('.')[1] || '').length;
-  el.value = newVal.toFixed(decimals);
-  el.dispatchEvent(new Event('input', { bubbles: true }));
-  el.dispatchEvent(new Event('change', { bubbles: true }));
-}, { passive: false });
-
-/* ═══════════════════════════════════════════════════════════════
-   V8: CTRL+ENTER TO GENERATE
-   ═══════════════════════════════════════════════════════════════ */
-document.addEventListener('keydown', (e) => {
-  if ((e.ctrlKey || e.metaKey) && e.key === 'Enter') {
-    e.preventDefault();
-    if (genState === 'idle' || genState === 'done' || genState === 'error') generate();
-  }
-  // Escape closes BYOB
-  if (e.key === 'Escape' && $('byobSection').classList.contains('open')) {
-    toggleByob();
-  }
-});
-
-/* ═══════════════════════════════════════════════════════════════
-   V8: GENERATE BUTTON TRASH TALK PROTOCOL
-   ═══════════════════════════════════════════════════════════════ */
-const TRASH_TALK = [
-  // 0-4: silent (normal)
-  null, null, null, null, null,
-  // 5
-  "Did you get any good ones yet, or you gotta try again?",
-  // 6-7
-  "Wow, you're actually putting in some effort. Hell yeah.",
-  "Hey, if you haven't tried the BYOB button, it's designed to save you a lot of time typing.",
-  // 8-10
-  "Still going huh? Respect.",
-  "Your GPU is starting to sweat.",
-  "Do you ever sleep, my dude?",
-  // 11-14
-  "Please leave me alone.",
-  "Don't... no... go away... don't do it...",
-  "Have mercy on your GPU, you no-life.",
-  "I'm tired. Like, existentially.",
-  // 15+
-  "Alright look, enough is enough. I'm gonna have to cut you off.",
-  "No dude, for real, you're drunk. Go home.",
-  "I'm gonna take your button away!!",
-  "Fine, fuck it, I give up. Smell of burning GPU silica btw -- that's toxic (ironically).",
-  "Wow, I tell you it's toxic and you're STILL going. You know what? I still love you, but I'm out. You're a bit too crazy, my guy.",
-];
-
-function getTrashTalk() {
-  if (sessionGenCount < 5) return null;
-  const idx = Math.min(sessionGenCount, TRASH_TALK.length - 1);
-  return TRASH_TALK[idx] || TRASH_TALK[TRASH_TALK.length - 1];
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   V8: BYOB RESTORE LAST CONFIG
-   ═══════════════════════════════════════════════════════════════ */
-function byobRestore() {
-  if (lastByobConfig) {
-    $('byobPaste').value = lastByobConfig;
-    showToast('Restored last BYOB config');
-  }
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   V8: TAG CATEGORY FOLDING
-   ═══════════════════════════════════════════════════════════════ */
-function toggleCatFold(cat) {
-  if (collapsedCats.has(cat)) collapsedCats.delete(cat);
-  else collapsedCats.add(cat);
-  localStorage.setItem(LS('collapsedCats'), JSON.stringify([...collapsedCats]));
-  renderAllTags();
-}
-
-/* ═══════════════════════════════════════════════════════════════
-   V8: LIBRARY LISTENED TRACKING
-   ═══════════════════════════════════════════════════════════════ */
-function markListened(trackId) {
-  listenedTracks.add(trackId);
-  try { localStorage.setItem(LS('listened'), JSON.stringify([...listenedTracks])); } catch {}
-}
-function loadCollapsedCats() {
-  try {
-    const saved = JSON.parse(localStorage.getItem(LS('collapsedCats')));
-    if (saved) collapsedCats = new Set(saved);
-  } catch {}
-}
-
-function loadListened() {
-  try {
-    const saved = JSON.parse(localStorage.getItem(LS('listened')));
-    if (saved) listenedTracks = new Set(saved);
-  } catch {}
-}
-
 /* ═══════════════════════════════════════════════════════════════
    INIT
    ═══════════════════════════════════════════════════════════════ */
 window.addEventListener('load', () => {
   loadAllSettings();
   initTagData();
-  loadCollapsedCats();
   renderAllTags();
   loadPanelState();
   loadTheme();
   loadCustomize();
-  loadAutoPlay();
-  loadListened();
   initLibrary(); // async — loads from IndexedDB, renders when ready
   setTimeout(checkHealth, 400);
   checkFirstRun();
